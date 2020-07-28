@@ -1,8 +1,8 @@
 import React, { useState, useCallback, useRef} from "react";
 import produce from 'immer'
 
-const numRows = 50;
-const numCols = 50;
+const numRows = 25;
+const numCols = 25;
 
 const operations = [
     [0, 1],
@@ -32,6 +32,9 @@ const App = () => {
     });
 
     const [running ,setRunning] = useState(false);
+    const [gameSpeed, setGameSpeed] = useState(250)
+    const speedRef = useRef(gameSpeed)
+    speedRef.current = gameSpeed
 
     const runningRef = useRef(running);
     runningRef.current = running
@@ -65,7 +68,7 @@ const App = () => {
             })
         })
         
-        setTimeout(runSimulation, 100);
+        setTimeout(runSimulation, speedRef.current);
     }, [])
 
     return (
@@ -122,6 +125,13 @@ const App = () => {
         )}
 
     </div>
+    <div className ="gamespeed">
+        <h3>Change Game Speed</h3>
+        <button onClick={() =>(setGameSpeed(2500))}>2500ms</button>
+        <button onClick={() =>(setGameSpeed(1500))}>1500ms</button>
+        <button onClick={() =>(setGameSpeed(750))}>750ms</button>
+    </div>
+    
     </>
     )}
 
