@@ -88,9 +88,9 @@ const Game = () => {
         setGrid(() => {
             const rows = []
             for (let i = 0; i< numRows; i++){
-                // reset generation to 0
+                
                 generation = 0;
-                // create a grid of all dead cells
+                
                 rows.push(Array.from(Array(numCols), () => 0))
             }
             return rows;
@@ -99,15 +99,46 @@ const Game = () => {
 
     return (
         <>
-            <div className="game">
+        <header>Welcome to the game!
+            
                 <h3>Play The Game!</h3>
+                <div className='gamebuttons'>
                 
                 <button onClick={() => start()}>Start</button>
                 <button onClick={() => stop()}>Stop</button>
                 <button onClick={() => randomize()}>Random</button>
                 <button onClick={() => reset()}>Clear</button>
+                
+                
             </div>
+            </header>
+            
 
+
+            <div style={{ display: "grid", gridTemplateColumns: `repeat(${numCols}, 20px)` }}>
+                {grid.map((rows, i) =>
+                    rows.map((col, k) => (
+                        <div
+                            key={`${i}-${k}`}
+                            
+                            onClick={() => {
+                                if(running !== true){
+                                const newGrid = produce(grid, gridCopy => {
+                                    gridCopy[i][k] = grid[i][k] ? 0 : 1;
+                                })
+                                setGrid(newGrid)}
+                            }}
+                            style={{
+                                width: 20,
+                                height: 20,
+                                backgroundColor: grid[i][k] ? `${cellColor}` : undefined,
+                                border: "solid 1px black"
+                            }}
+                        />
+                    ))
+                )}
+
+            </div>
             <div className="gamespeed">
                 <h3>Change Game Speed</h3>
                 <button onClick={() => (setGameSpeed(2500))}>2500ms</button>
@@ -124,30 +155,6 @@ const Game = () => {
             </div>
             <div className="generations">
                 <h3>Generations:{generation}</h3>
-            </div>
-
-
-            <div style={{ display: "grid", gridTemplateColumns: `repeat(${numCols}, 20px)` }}>
-                {grid.map((rows, i) =>
-                    rows.map((col, k) => (
-                        <div
-                            key={`${i}-${k}`}
-                            onClick={() => {
-                                const newGrid = produce(grid, gridCopy => {
-                                    gridCopy[i][k] = grid[i][k] ? 0 : 1;
-                                })
-                                setGrid(newGrid)
-                            }}
-                            style={{
-                                width: 20,
-                                height: 20,
-                                backgroundColor: grid[i][k] ? `${cellColor}` : undefined,
-                                border: "solid 1px black"
-                            }}
-                        />
-                    ))
-                )}
-
             </div>
 
         </>

@@ -1,0 +1,17 @@
+
+*{
+    border: 1px solid black;
+}
+header{
+
+    display: flex;
+    width:100%;
+}
+
+.gamebuttons{
+    justify-content: space-between;
+    
+}
+button{
+    border-radius: 25px;
+}
