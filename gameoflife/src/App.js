@@ -3,6 +3,8 @@ import Game from './components/Game'
 import Rules from './components/Rules'
 import About from './components/About'
 
+import {Route} from ''
+
 function App() {
     return(
         <>

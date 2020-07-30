@@ -94,13 +94,15 @@ const Game = () => {
                 rows.push(Array.from(Array(numCols), () => 0))
             }
             return rows;
+            
             })
     }
 
     return (
         <>
-        <header>Welcome to the game!
+        <header>
             
+            <div className = 'game'>
                 <h3>Play The Game!</h3>
                 <div className='gamebuttons'>
                 
@@ -110,18 +112,20 @@ const Game = () => {
                 <button onClick={() => reset()}>Clear</button>
                 
                 
+                </div>
             </div>
-            </header>
+         </header>
             
 
 
-            <div style={{ display: "grid", gridTemplateColumns: `repeat(${numCols}, 20px)` }}>
+            <div className="board" style={{ display: "grid", gridTemplateColumns: `repeat(${numCols}, 20px)` }}>
                 {grid.map((rows, i) =>
                     rows.map((col, k) => (
                         <div
                             key={`${i}-${k}`}
                             
                             onClick={() => {
+                                /// lets you not click while running
                                 if(running !== true){
                                 const newGrid = produce(grid, gridCopy => {
                                     gridCopy[i][k] = grid[i][k] ? 0 : 1;
