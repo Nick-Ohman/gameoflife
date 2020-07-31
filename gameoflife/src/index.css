@@ -1,0 +1,55 @@
+
+*{
+    border: 1px solid black;
+}
+header{
+
+    display: flex;
+    width:100%;
+    margin-left: 35%;
+    
+}
+
+.game{
+    width:25%;
+    justify-content: end;
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+
+.gamebuttons{
+    margin:3%;
+    align-items: flex-end;
+    
+    
+    
+}
+button{
+    border-radius: 25px;
+    
+}
+
+.gamespeed{
+    width: 30%;
+}
+
+.gamecolor{
+    width:30%;
+}
+
+.generations{
+    width:30%;
+}
+.board{
+    width:40%;
+}
+
+.rules{
+    width:40%;
+}
+
+.about{
+    width:45%;
+}
