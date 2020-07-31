@@ -85,6 +85,7 @@ const Game = () => {
     const stop = () => { setRunning(false); runningRef.current = false; }
 
     const reset = () => {
+        
         setGrid(() => {
             const rows = []
             for (let i = 0; i< numRows; i++){
